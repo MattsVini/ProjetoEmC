@@ -1,36 +1,56 @@
 #include <stdio.h>
 
+// Procedimentos das movimentações  das peças de xadrez.
+void movimentoDaRainha(int rainhaMover){
+    if(rainhaMover < 4){
+        printf("Direita \n");
+        movimentoDaRainha(rainhaMover + 1);
+    }
+}
+
+void movimentoDaTorre(int torreMover){
+    if(torreMover > 6){
+        printf("Direita\n");
+        movimentoDaTorre(torreMover - 1);
+    }
+}
+
+void movimentoDoBispo(int bispoMover){
+    for(bispoMover; bispoMover < 4; bispoMover++){
+        printf("Cima\n");
+        int horizontal = bispoMover;
+        for(horizontal; horizontal == bispoMover; horizontal--){
+            printf("Esquerda\n");
+        }
+    }
+}
+// execução principal
 int main() {
+
+    // iniciando o movimento das peças.
     printf("*** movimento das peças de xadrez ***\n");
     int bispoMover = 1, torreMover = 1, rainhaMover = 1, cavaloMover = 1;
+
+    // uso do procedimento
     printf("Movimento da Torre:\n");
-    while (torreMover < 6){
-        printf("Direita(x%d)\n", torreMover);
-        torreMover++;
-    }
+    movimentoDaTorre(torreMover);
 
+    // uso do procedimento
     printf("\n\nMovimento do Bispo:\n");
-    do {
+    movimentoDoBispo(bispoMover);
 
-        printf(" Cima, Direita(x%d)\n", bispoMover);
-        bispoMover++;
-    } while(bispoMover < 6);
+    // uso do procedimento
+    printf("\n\nMovimento da Rainha:\n");
+    movimentoDaRainha(rainhaMover);
 
-    printf("\n\nMovimento da Rainha\n");
-    for(rainhaMover; rainhaMover < 9; rainhaMover++){
-        printf("Direita(x%d)\n", rainhaMover);
-    }
-
-    printf("\n\nMovimento do Cavalo\n");
-
-    for(cavaloMover; cavaloMover < 2; cavaloMover++){
-        int i = 1;
-        while(i < 3){
-            printf("Baixo(x%d)\n", i);
-            i++;
+    // estrutura de repetição aninhada com condição múltipla
+    printf("\n\nMovimento do Cavalo:\n");
+    for(cavaloMover; cavaloMover < 3; cavaloMover++){
+        printf("Cima\n");
+        for(int i = 1; cavaloMover > i && i % 2 != 0; i++){
+            printf("Direita\n");
         }
-        printf("Esquerda\n");
-        
     }
+    
         return 0;
 }
